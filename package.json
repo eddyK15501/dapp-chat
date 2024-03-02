@@ -4,12 +4,17 @@
   "description": "Chat Group Dapp",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "cd client && npm run dev",
+    "compile": "npx hardhat compile",
+    "local": "npx hardhat run scripts/deploy.js --network localhost",
+    "node": "npx hardhat node",
+    "test": "npx hardhat test"
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^2.0.2",
+    "@openzeppelin/contracts": "^4.8.1",
     "hardhat": "^2.12.6"
   }
 }
