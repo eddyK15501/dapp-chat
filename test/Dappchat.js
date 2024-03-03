@@ -1,25 +1,25 @@
 const { expect } = require('chai');
 
 const tokens = (n) => {
-    return ethers.utils.parseUnits(n.toString());
-}
+  return ethers.utils.parseUnits(n.toString());
+};
 
 describe('Dappchat', () => {
-    describe('Deployment', () => {
-        it('Set name of ERC-721', async () => {
-            const DappchatFactory = await ethers.getContractFactory('Dappchat');
-            const dappchat = await DappchatFactory.deploy('dAppchat', 'CHAT');
-            await dappchat.deployed();
+  let dappchat;
 
-            expect(await dappchat.name()).to.be.equal('dAppchat');
-        })
+  beforeEach(async () => {
+    const DappchatFactory = await ethers.getContractFactory('Dappchat');
+    dappchat = await DappchatFactory.deploy('dAppchat', 'CHAT');
+    await dappchat.deployed();
+  });
 
-        it('Set ticker of ERC-721', async () => {
-            const DappchatFactory = await ethers.getContractFactory('Dappchat');
-            const dappchat = await DappchatFactory.deploy('dAppchat', 'CHAT');
-            await dappchat.deployed();
+  describe('Deployment', () => {
+    it('Set name of ERC-721', async () => {
+      expect(await dappchat.name()).to.be.equal('dAppchat');
+    });
 
-            expect( await dappchat.symbol()).to.be.equal('CHAT');
-        })
-    })
-})
+    it('Set ticker of ERC-721', async () => {
+      expect(await dappchat.symbol()).to.be.equal('CHAT');
+    });
+  });
+});
