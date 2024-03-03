@@ -5,11 +5,16 @@ const tokens = (n) => {
 };
 
 describe('Dappchat', () => {
+  // Contract
   let dappchat;
+
+  // ERC-721 name/symbol
+  const NAME = 'dAppchat';
+  const SYMBOL = 'CHAT';
 
   beforeEach(async () => {
     const DappchatFactory = await ethers.getContractFactory('Dappchat');
-    dappchat = await DappchatFactory.deploy('dAppchat', 'CHAT');
+    dappchat = await DappchatFactory.deploy(NAME, SYMBOL);
     await dappchat.deployed();
   });
 
