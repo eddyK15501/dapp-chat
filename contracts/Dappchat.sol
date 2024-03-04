@@ -49,9 +49,4 @@ contract Dappchat is ERC721 {
         totalSupply++;
         _safeMint(msg.sender, totalSupply, "");
     }
-
-    function withdraw() public onlyOwner {
-        (bool success, ) = owner.call{value: address(this).balance}("");
-        require(success);
-    }
 }
