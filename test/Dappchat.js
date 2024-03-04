@@ -44,7 +44,7 @@ describe('Dappchat', () => {
 
   describe('Creating Channels', () => {
     it('Returns total number of channels', async () => {
-      const total = await dappchat.index();
+      const total = await dappchat.channelIndex();
       expect(total).to.equal(1);
     });
 
@@ -53,6 +53,31 @@ describe('Dappchat', () => {
       expect(result.id).to.equal(1);
       expect(result.name).to.equal('general');
       expect(result.cost).to.equal(tokens(1));
+    });
+  });
+
+  describe('Join Channels', () => {
+    const ID = 1;
+    const AMOUNT = tokens(1);
+
+    beforeEach(async () => {
+      const transaction = await dappchat.connect(signer[1]).mint(ID, { value: AMOUNT });
+      await transaction.wait();
+    });
+
+    it('Join a user', async () => {
+      const result = await dappchat.hasJoined(ID, signer[1].address);
+      expect(result).to.eq(true);
+    });
+
+    it('Increases total supply', async () => {
+      const result = await dappchat.totalSupply();
+      expect(result).to.eq(1);
+    });
+
+    it('Updates contract balance', async () => {
+      const result = await ethers.provider.getBalance(dappchat.address);
+      expect(result).to.eq(AMOUNT);
     });
   });
 });
