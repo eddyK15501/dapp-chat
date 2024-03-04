@@ -58,7 +58,7 @@ describe('Dappchat', () => {
 
   describe('Join Channels', () => {
     const ID = 1;
-    const AMOUNT = tokens(1);
+    const AMOUNT = ethers.utils.parseUnits('1', 'ether');
 
     beforeEach(async () => {
       const transaction = await dappchat.connect(signer[1]).mint(ID, { value: AMOUNT });

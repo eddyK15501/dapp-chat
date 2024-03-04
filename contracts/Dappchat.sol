@@ -20,7 +20,7 @@ contract Dappchat is ERC721 {
     mapping(uint256 => mapping(address => bool)) public hasJoined;
 
     modifier onlyOwner() {
-        require(msg.sender == owner, 'You are not the owner');
+        require(msg.sender == owner);
         _;
     }
 
@@ -40,6 +40,11 @@ contract Dappchat is ERC721 {
     }
 
     function mint(uint256 _id) public payable {
+        require(_id != 0);
+        require(_id <= channelIndex);
+        require(hasJoined[_id][msg.sender] == false);
+        require(msg.value >= channels[_id].cost);
+
         hasJoined[_id][msg.sender] = true;
         totalSupply++;
         _safeMint(msg.sender, totalSupply, "");
