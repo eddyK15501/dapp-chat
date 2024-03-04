@@ -54,7 +54,5 @@ describe('Dappchat', () => {
       expect(result.name).to.equal('general');
       expect(result.cost).to.equal(tokens(1));
     });
-
-    
   });
 });

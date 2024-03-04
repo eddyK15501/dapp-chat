@@ -7,7 +7,8 @@ import "hardhat/console.sol";
 
 contract Dappchat is ERC721 {
     address public owner;
-    uint256 public index;
+    uint256 public channelIndex;
+    uint256 public totalSupply;
 
     struct Channel {
         uint256 id;
@@ -16,6 +17,12 @@ contract Dappchat is ERC721 {
     }
 
     mapping(uint256 => Channel) public channels;
+    mapping(uint256 => mapping(address => bool)) public hasJoined;
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, 'You are not the owner');
+        _;
+    }
 
     constructor(string memory _name, string memory _symbol) 
         ERC721(_name, _symbol) 
@@ -23,12 +30,18 @@ contract Dappchat is ERC721 {
         owner = msg.sender;
     }
     
-    function createChannel(string memory _name, uint256 _cost) public {
-        index++;
-        channels[index] = Channel(index, _name, _cost);
+    function createChannel(string memory _name, uint256 _cost) public onlyOwner {
+        channelIndex++;
+        channels[channelIndex] = Channel(channelIndex, _name, _cost);
     }
 
     function getChannel(uint256 _id) public view returns (Channel memory) {
         return channels[_id];
+    }
+
+    function mint(uint256 _id) public payable {
+        hasJoined[_id][msg.sender] = true;
+        totalSupply++;
+        _safeMint(msg.sender, totalSupply, "");
     }
 }
