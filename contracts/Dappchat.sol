@@ -24,7 +24,7 @@ contract Dappchat is ERC721 {
     }
     
     function createChannel(string memory _name, uint256 _cost) public {
-        index += 1;
+        index++;
         channels[index] = Channel(index, _name, _cost);
     }
 }

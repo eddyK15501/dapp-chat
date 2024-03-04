@@ -21,6 +21,11 @@ describe('Dappchat', () => {
     const DappchatFactory = await ethers.getContractFactory('Dappchat');
     dappchat = await DappchatFactory.deploy(NAME, SYMBOL);
     await dappchat.deployed();
+
+    const transaction = await dappchat
+      .connect(signer[0])
+      .createChannel('general', tokens(1));
+    await transaction.wait();
   });
 
   describe('Deployment', () => {
@@ -35,5 +40,12 @@ describe('Dappchat', () => {
     it('Msg.sender is the owner', async () => {
       expect(await dappchat.owner()).to.be.equal(signer[0].address);
     });
+  });
+
+  describe('Creating Channels', () => {
+    it('Returns total number of channels', async () => {
+      const total = await dappchat.index();
+      expect(total).to.equal(1);
+    })
   });
 });
