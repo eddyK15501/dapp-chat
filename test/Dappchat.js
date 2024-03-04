@@ -46,6 +46,15 @@ describe('Dappchat', () => {
     it('Returns total number of channels', async () => {
       const total = await dappchat.index();
       expect(total).to.equal(1);
-    })
+    });
+
+    it('Get the channel attributes', async () => {
+      const result = await dappchat.getChannel(1);
+      expect(result.id).to.equal(1);
+      expect(result.name).to.equal('general');
+      expect(result.cost).to.equal(tokens(1));
+    });
+
+    
   });
 });
