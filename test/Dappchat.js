@@ -80,4 +80,36 @@ describe('Dappchat', () => {
       expect(result).to.eq(AMOUNT);
     });
   });
+
+  describe('Withdraw funds as owner', () => {
+    const ID = 1;
+    const AMOUNT = ethers.utils.parseUnits('10', 'ether');
+    
+    let balanceBefore;
+
+    beforeEach(async () => {
+      // Get balance before the withdrawal
+      balanceBefore = await ethers.provider.getBalance(signer[0].address);
+
+      // Mint as signer[1] - Smart contract receives payment
+      let transaction = await dappchat.connect(signer[1]).mint(ID, { value: AMOUNT });
+      await transaction.wait();
+
+      // Withdraw as signer[0] - Owner of the contract
+      transaction = await dappchat.connect(signer[0]).withdraw();
+      await transaction.wait();
+    });
+
+    it('Updates the balance of the owner', async () => {
+      // Get balance after the withdrawal
+      const balanceAfter = await ethers.provider.getBalance(signer[0].address);
+      expect(balanceAfter).to.be.greaterThan(balanceBefore);
+    });
+
+    it('Updates the balance of the contract', async () => {
+      // Empty contract balance after withdrawal from owner
+      const contractBalance = await ethers.provider.getBalance(dappchat.address);
+      expect(contractBalance).to.eq(0);
+    });
+  });
 });
