@@ -6,10 +6,16 @@
 // global scope, and execute the script.
 const hre = require("hardhat");
 
+const tokens = (n) => {
+  return ethers.utils.parseUnits(n.toString());
+};
+
 async function main() {
-  // Variables
+  // Deployment Variables
   const NAME = 'dAppchat';
   const SYMBOL = 'CHAT';
+
+  // Signers
   const signer = await ethers.getSigners();
 
   // Deploy contract
@@ -19,7 +25,17 @@ async function main() {
 
   console.log(`Dappchat Contract deployed at: ${dappchat.address}`);
 
-  
+  // Channel names/cost to mint
+  const CHANNEL_NAMES = ['about', 'questions', 'jobs'];
+  const COSTS = [tokens(0.5), tokens(0), tokens(1)];
+
+  // Create 3 Channels
+  for (let i = 0; i < 3; i++) {
+    const transaction = await dappchat.connect(signer[0]).createChannel(CHANNEL_NAMES[i], COSTS[i]);
+    await transaction.wait();
+
+    console.log(`Channels Created: #${CHANNEL_NAMES[i]}`)
+  }
 }
 
 // We recommend this pattern to be able to use async/await everywhere
