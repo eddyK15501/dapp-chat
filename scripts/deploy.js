@@ -4,7 +4,7 @@
 // You can also run a script with `npx hardhat run <script>`. If you do that, Hardhat
 // will compile your contracts, add the Hardhat Runtime Environment's members to the
 // global scope, and execute the script.
-const hre = require("hardhat");
+const hre = require('hardhat');
 
 const tokens = (n) => {
   return ethers.utils.parseUnits(n.toString());
@@ -31,10 +31,11 @@ async function main() {
 
   // Create 3 Channels
   for (let i = 0; i < 3; i++) {
-    const transaction = await dappchat.connect(signer[0]).createChannel(CHANNEL_NAMES[i], COSTS[i]);
+    const transaction = await dappchat
+      .connect(signer[0])
+      .createChannel(CHANNEL_NAMES[i], COSTS[i]);
     await transaction.wait();
-
-    console.log(`Channel Created: #${CHANNEL_NAMES[i]}`)
+    console.log(`Channel Created: #${CHANNEL_NAMES[i]}`);
   }
 }
 
