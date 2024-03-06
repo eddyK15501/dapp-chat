@@ -1,10 +1,17 @@
 /* eslint-disable no-unused-vars */
-import React from 'react'
+import React from 'react';
 
 const Navigation = () => {
   return (
-    <div>Navigation</div>
-  )
-}
+    <nav>
+      <div className='nav__brand'>
+        <h1>DappChat!</h1>
+      </div>
+      <button type='button' className='nav__connect'>
+        Connect
+      </button>
+    </nav>
+  );
+};
 
-export default Navigation
+export default Navigation;
