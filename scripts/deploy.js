@@ -26,7 +26,7 @@ async function main() {
   console.log(`Dappchat Contract deployed at: ${dappchat.address}`);
 
   // Channel names/cost to mint
-  const CHANNEL_NAMES = ['about', 'questions', 'jobs'];
+  const CHANNEL_NAMES = ['general', 'intro', 'jobs'];
   const COSTS = [tokens(0.5), tokens(0), tokens(1)];
 
   // Create 3 Channels
@@ -34,7 +34,7 @@ async function main() {
     const transaction = await dappchat.connect(signer[0]).createChannel(CHANNEL_NAMES[i], COSTS[i]);
     await transaction.wait();
 
-    console.log(`Channels Created: #${CHANNEL_NAMES[i]}`)
+    console.log(`Channel Created: #${CHANNEL_NAMES[i]}`)
   }
 }
 
