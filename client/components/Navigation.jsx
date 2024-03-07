@@ -16,21 +16,27 @@ const Navigation = ({ account, setAccount }) => {
 
         console.log(account);
       } else {
-        alert('Please connect to your MetaMask wallet.')
+        alert('Please connect to your MetaMask wallet.');
       }
     } catch (err) {
       console.error(err);
     }
-  }
+  };
 
   return (
     <nav>
       <div className='nav__brand'>
         <h1>DappChat!</h1>
       </div>
-      <button type='button' className='nav__connect' onClick={handleConnect}>
-        Connect
-      </button>
+      {account ? (
+        <button className='nav__connect'>
+          {`${account.slice(0, 7)}...${account.slice(37, 42)}`}
+        </button>
+      ) : (
+        <button className='nav__connect' onClick={handleConnect}>
+          Connect
+        </button>
+      )}
     </nav>
   );
 };
