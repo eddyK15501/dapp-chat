@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import Navigation from './components/Navigation';
 import Server from './components/Server';
+import Channels from './components/Channels';
 
 import config from '../config/config.json';
 
@@ -31,6 +32,7 @@ function App() {
         <Navigation account={account} setAccount={setAccount} />
         <main>
           <Server />
+          <Channels />
         </main>
       </div>
     </>
