@@ -8,7 +8,17 @@ import config from '../config/config.json';
 function App() {
   const [account, setAccount] = useState('');
 
-  const fetchContractABI = async () => {};
+  const fetchContractABI = async () => {
+    try {
+      if (window.ethereum) {
+        window.ethereum.on('accountsChanged', async () => {
+          window.location.reload();
+        });
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   useEffect(() => {
     fetchContractABI();
