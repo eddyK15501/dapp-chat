@@ -6,13 +6,13 @@ const Server = () => {
   return (
     <div className='servers'>
       <div className='server'>
-        <img src={ethereum} alt='Ethereum' />
+        <img src={ethereum} alt='Sample Ethereum Logo' />
       </div>
       <div className='server'>
-        <img src={plus} alt='Add Server' />
+        <img src={plus} alt='Sample Add Icon' />
       </div>
       <div className='server'>
-        <img src={search} alt='Search' />
+        <img src={search} alt='Sample Search Functionality' />
       </div>
     </div>
   );
