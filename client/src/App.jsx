@@ -8,22 +8,7 @@ import config from '../config/config.json';
 function App() {
   const [account, setAccount] = useState('');
 
-  const fetchContractABI = async () => {
-    try {
-      if (window.ethereum) {
-        // Get MetaMask account
-        const accounts = await window.ethereum.request({
-          method: 'eth_requestAccounts',
-        });
-        const account = ethers.utils.getAddress(accounts[0]);
-        setAccount(account);
-        
-        console.log(typeof account);
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  const fetchContractABI = async () => {};
 
   useEffect(() => {
     fetchContractABI();
@@ -32,7 +17,7 @@ function App() {
   return (
     <>
       <div>
-        <Navigation />
+        <Navigation account={account} setAccount={setAccount} />
         <main></main>
       </div>
     </>
