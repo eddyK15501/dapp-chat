@@ -4,6 +4,7 @@ import { ethers } from 'ethers';
 import Navigation from './components/Navigation';
 import Server from './components/Server';
 import Channels from './components/Channels';
+import Messages from './components/Messages';
 
 import config from '../config/config.json';
 
@@ -33,6 +34,7 @@ function App() {
         <main>
           <Server />
           <Channels />
+          <Messages />
         </main>
       </div>
     </>
