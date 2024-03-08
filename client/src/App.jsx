@@ -14,6 +14,7 @@ function App() {
   const [account, setAccount] = useState('');
   const [provider, setProvider] = useState({});
   const [contract, setContract] = useState({});
+  const [channels, setChannels] = useState([]);
 
   const fetchContractABI = async () => {
     try {
@@ -34,18 +35,13 @@ function App() {
 
         // Get Channels
         const totalChannels = await dappchat.channelIndex();
-
-        console.log(typeof totalChannels)
-        
         const channels = [];
 
         for (let i = 1; i <= totalChannels.toNumber(); i++) {
           const channel = await dappchat.getChannel(i);
           channels.push(channel);
-
-          console.log(channel[1]);
         }
-        
+        setChannels([...channels]);
 
         window.ethereum.on('accountsChanged', async () => {
           window.location.reload();
@@ -68,7 +64,12 @@ function App() {
         <Navigation account={account} setAccount={setAccount} />
         <main>
           <Server />
-          <Channels />
+          <Channels
+            account={account}
+            provider={provider}
+            contract={contract}
+            channels={channels}
+          />
           <Messages />
         </main>
       </div>
