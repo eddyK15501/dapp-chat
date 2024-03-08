@@ -32,7 +32,9 @@ function App() {
         );
         setContract(dappchat);
 
-        // Get Channel
+        // Get Channels
+        const totalChannels = await dappchat.totalChannels();
+        console.log(totalChannels);
         
 
         window.ethereum.on('accountsChanged', async () => {

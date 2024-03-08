@@ -470,7 +470,7 @@
   },
   {
     "inputs": [],
-    "name": "totalSupply",
+    "name": "totalChannels",
     "outputs": [
       {
         "internalType": "uint256",

@@ -13,8 +13,6 @@ const Navigation = ({ account, setAccount }) => {
         });
         const account = ethers.utils.getAddress(accounts[0]);
         setAccount(account);
-
-        console.log(account);
       } else {
         alert('Please connect to your MetaMask wallet.');
       }
