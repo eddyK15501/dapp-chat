@@ -8,7 +8,7 @@ import "hardhat/console.sol";
 contract Dappchat is ERC721 {
     address public owner;
     uint256 public channelIndex;
-    uint256 public totalSupply;
+    uint256 public totalChannels;
 
     struct Channel {
         uint256 id;
@@ -46,8 +46,8 @@ contract Dappchat is ERC721 {
         require(msg.value >= channels[_id].cost);
 
         hasJoined[_id][msg.sender] = true;
-        totalSupply++;
-        _safeMint(msg.sender, totalSupply, "");
+        totalChannels++;
+        _safeMint(msg.sender, totalChannels, "");
     }
 
     function withdraw() public onlyOwner {

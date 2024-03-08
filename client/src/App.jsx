@@ -32,9 +32,8 @@ function App() {
         );
         setContract(dappchat);
 
-        console.log(network);
-        console.log(dappchat);
-        console.log(typeof dappchat);
+        // Get Channel
+        
 
         window.ethereum.on('accountsChanged', async () => {
           window.location.reload();
