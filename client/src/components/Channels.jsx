@@ -7,9 +7,13 @@ const Channels = ({ account, provider, contract, channels }) => {
     const hasJoined = await contract.hasJoined(channel.id, account);
 
     if (hasJoined) {
-      console.log("Joined.")
+      console.log('Joined.');
     } else {
-      console.log("Minting required.")
+      const signer = await provider.getSigner();
+      const transaction = await contract
+        .connect(signer)
+        .mint(channel.id, { value: channel.cost });
+      await transaction.wait();
     }
   };
 

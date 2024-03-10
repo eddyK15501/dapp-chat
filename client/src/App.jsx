@@ -45,6 +45,7 @@ function App() {
 
         window.ethereum.on('accountsChanged', async () => {
           window.location.reload();
+          alert("Account has changed. Please reconnect your wallet.");
         });
       } else {
         alert('Please connect to your MetaMask wallet.');
