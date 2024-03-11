@@ -5,6 +5,7 @@ import React from 'react';
 const Channels = ({ account, provider, contract, channels }) => {
   const handleChannel = async (channel) => {
     const hasJoined = await contract.hasJoined(channel.id, account);
+    console.log(channel);
 
     if (hasJoined) {
       console.log('Joined.');

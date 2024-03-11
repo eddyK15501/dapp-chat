@@ -16,6 +16,8 @@ function App() {
   const [contract, setContract] = useState({});
   const [channels, setChannels] = useState([]);
 
+  const [currentChannel, setCurrentChannel] = useState(null);
+
   const fetchContractABI = async () => {
     try {
       if (window.ethereum) {
@@ -70,6 +72,8 @@ function App() {
             provider={provider}
             contract={contract}
             channels={channels}
+            currentChannel={currentChannel}
+            setCurrentChannel={setCurrentChannel}
           />
           <Messages />
         </main>
