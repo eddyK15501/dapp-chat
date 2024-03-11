@@ -2,13 +2,20 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-const Channels = ({ account, provider, contract, channels }) => {
+const Channels = ({
+  account,
+  provider,
+  contract,
+  channels,
+  currentChannel,
+  setCurrentChannel,
+}) => {
   const handleChannel = async (channel) => {
     const hasJoined = await contract.hasJoined(channel.id, account);
     console.log(channel);
 
     if (hasJoined) {
-      console.log('Joined.');
+      setCurrentChannel(channel);
     } else {
       const signer = await provider.getSigner();
       const transaction = await contract
@@ -28,6 +35,12 @@ const Channels = ({ account, provider, contract, channels }) => {
               <li
                 key={channel[0].toString()}
                 onClick={() => handleChannel(channel)}
+                className={
+                  currentChannel &&
+                  currentChannel.id.toString() == channel.id.toString()
+                    ? 'active'
+                    : ''
+                }
               >
                 {channel.name}
               </li>
