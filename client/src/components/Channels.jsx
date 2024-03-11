@@ -12,7 +12,6 @@ const Channels = ({
 }) => {
   const handleChannel = async (channel) => {
     const hasJoined = await contract.hasJoined(channel.id, account);
-    console.log(channel);
 
     if (hasJoined) {
       setCurrentChannel(channel);
@@ -22,6 +21,7 @@ const Channels = ({
         .connect(signer)
         .mint(channel.id, { value: channel.cost });
       await transaction.wait();
+      setCurrentChannel(channel);
     }
   };
 

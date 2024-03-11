@@ -1,13 +1,3 @@
-# Sample Hardhat Project
+# DappChat
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
-
-Try running some of the following tasks:
-
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.js
-```
+<img src="https://i.ibb.co/5hTNZmx/Screenshot-2024-03-11-at-3-02-17-PM.png" />
