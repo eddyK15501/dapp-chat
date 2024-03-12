@@ -3,14 +3,16 @@ import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import { io } from 'socket.io-client';
 
+import DappChatABI from '../abi/Dappchat.json';
+import config from '../config/config.json';
+
+// Components
 import Navigation from './components/Navigation';
 import Server from './components/Server';
 import Channels from './components/Channels';
 import Messages from './components/Messages';
 
-import DappChatABI from '../abi/Dappchat.json';
-import config from '../config/config.json';
-
+// Web Socket
 const socket = io('ws://localhost:8080');
 
 function App() {
