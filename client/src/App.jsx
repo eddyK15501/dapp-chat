@@ -20,6 +20,7 @@ function App() {
   const [channels, setChannels] = useState([]);
 
   const [currentChannel, setCurrentChannel] = useState(null);
+  const [messages, setMessages] = useState([]);
 
   const fetchContractABI = async () => {
     try {
@@ -69,11 +70,11 @@ function App() {
     });
 
     socket.on('get messages', (messages) => {
-      console.log(messages);
+      setMessages(messages);
     });
 
-    socket.on('new message', () => {
-      console.log('New message.')
+    socket.on('new message', (messages) => {
+      setMessages(messages);
     });
 
     // Disconnect on "ComponentDidUnmount()"
