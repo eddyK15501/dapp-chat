@@ -65,11 +65,11 @@ function App() {
 
     // Connect to Web Socket on "ComponentDidMount()"
     socket.on('connect', () => {
-      console.log('Socket connected.');
+      socket.emit('get messages');
     });
 
-    socket.on('get messages', () => {
-      console.log('Getting messages.');
+    socket.on('get messages', (messages) => {
+      console.log(messages);
     });
 
     socket.on('new message', () => {
