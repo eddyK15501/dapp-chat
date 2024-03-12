@@ -9,7 +9,6 @@ import Channels from './components/Channels';
 import Messages from './components/Messages';
 
 import DappChatABI from '../abi/Dappchat.json';
-
 import config from '../config/config.json';
 
 const socket = io('ws://localhost:8080');
@@ -63,6 +62,26 @@ function App() {
 
   useEffect(() => {
     fetchContractABI();
+
+    // Connect to Web Socket on "ComponentDidMount()"
+    socket.on('connect', () => {
+      console.log('Socket connected.');
+    });
+
+    socket.on('get messages', () => {
+      console.log('Getting messages.');
+    });
+
+    socket.on('new message', () => {
+      console.log('New message.')
+    });
+
+    // Disconnect on "ComponentDidUnmount()"
+    return () => {
+      socket.off('connect');
+      socket.off('get messages');
+      socket.off('new message');
+    }
   }, []);
 
   return (
