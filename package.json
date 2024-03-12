@@ -8,6 +8,7 @@
     "compile": "npx hardhat compile",
     "local": "npx hardhat run scripts/deploy.js --network localhost",
     "node": "npx hardhat node",
+    "server": "node --watch server.js",
     "test": "npx hardhat test"
   },
   "author": "",
