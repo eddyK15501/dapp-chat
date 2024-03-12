@@ -51,7 +51,7 @@ function App() {
 
         window.ethereum.on('accountsChanged', async () => {
           window.location.reload();
-          alert("Account has changed. Please reconnect your wallet.");
+          alert('Account has changed. Please reconnect your wallet.');
         });
       } else {
         alert('Please connect to your MetaMask wallet.');
@@ -82,7 +82,7 @@ function App() {
       socket.off('connect');
       socket.off('get messages');
       socket.off('new message');
-    }
+    };
   }, []);
 
   return (
@@ -99,7 +99,11 @@ function App() {
             currentChannel={currentChannel}
             setCurrentChannel={setCurrentChannel}
           />
-          <Messages />
+          <Messages
+            account={account}
+            messages={messages}
+            currentChannel={currentChannel}
+          />
         </main>
       </div>
     </>
