@@ -170,6 +170,7 @@ main {
   overflow-y: scroll;
   scroll-snap-align: end;
   max-height: 75vh;
+  margin: 2rem 0 2rem 0;
 }
 
 .text .message {

@@ -22,10 +22,14 @@ const Messages = ({ account, messages, currentChannel }) => {
     <div className='text'>
       <div className='messages'>
         {filteredMessages.map((message, index) => (
-            <div className='message' key={index}>
-              {message.text}, {message.channel}
+          <div className='message' key={index}>
+            <img src={person} alt="Person Icon" />
+            <div className='message_content'>
+              <h3>{`${message.account.slice(0, 6)}...${message.account.slice(38, 42)}`}</h3>
+              <p>{message.text}</p>
             </div>
-          ))}
+          </div>
+        ))}
       </div>
     </div>
   );
