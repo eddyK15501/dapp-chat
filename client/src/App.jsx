@@ -91,7 +91,7 @@ function App() {
     <>
       <div>
         <Navigation account={account} setAccount={setAccount} />
-        <main>
+        <main style={{ minHeight: '90vh' }}>
           <Server />
           <Channels
             account={account}

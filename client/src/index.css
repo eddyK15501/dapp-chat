@@ -30,7 +30,7 @@ nav {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   align-items: center;
-  height: 4rem;
+  height: 10vh;
   background-color: var(--clr-light-grey);
   border-bottom: 2px solid var(--clr-dark-grey);
 }
@@ -75,7 +75,7 @@ main {
   background-color: var(--clr-dark-grey);
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  height: 92vh;
+  height: 100%;
 }
 
 .servers {
@@ -167,10 +167,9 @@ main {
   display: flex;
   flex-direction: column;
   align-self: flex-end;
-  overflow-y: scroll;
+  overflow-y: auto;
   scroll-snap-align: end;
-  max-height: 75vh;
-  margin: 2rem 0 2rem 0;
+  max-height: 70vh;
 }
 
 .text .message {
