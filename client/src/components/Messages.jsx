@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { io } from 'socket.io-client';
 
 import person from '../assets/person.svg';
@@ -9,18 +9,22 @@ import send from '../assets/send.svg';
 const socket = io('ws://localhost:8080');
 
 const Messages = ({ account, messages, currentChannel }) => {
+  const [newMessage, setNewMessage] = useState('');
   const messageEndRef = useRef(null);
 
   const filteredMessages = messages.filter((message) => {
     return message.channel == currentChannel?.id.toString();
   });
 
-  const handleSendMessage = () => {};
+  const handleSendMessage = async (event) => {
+    event.preventDefault();
+    console.log('Sending Message');
+  };
 
-  useEffect(() => {
-    console.log(messages);
-    console.log(currentChannel);
-  }, [messages, currentChannel]);
+  // useEffect(() => {
+  //   console.log(messages);
+  //   console.log(currentChannel);
+  // }, [messages, currentChannel]);
 
   return (
     <div className='text'>
@@ -40,7 +44,7 @@ const Messages = ({ account, messages, currentChannel }) => {
         <div ref={messageEndRef} />
       </div>
       <form onSubmit={handleSendMessage}>
-        <input type='text' />
+        <input type='text' onChange={e => setNewMessage(e.target.value)} />
         <button type='submit'>
           <img src={send} alt='Send Icon' />
         </button>
