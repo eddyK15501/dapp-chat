@@ -44,7 +44,12 @@ const Messages = ({ account, messages, currentChannel }) => {
         <div ref={messageEndRef} />
       </div>
       <form onSubmit={handleSendMessage}>
-        <input type='text' onChange={e => setNewMessage(e.target.value)} />
+        {currentChannel && account ? (
+          <input type='text' value={newMessage} placeholder={`Add a new message: #${currentChannel.name}`} onChange={e => setNewMessage(e.target.value)} />
+        ) : (
+          <input type='text' value='' placeholder='Please connect your wallet / Join the Channel' disabled />
+        )}
+        {/* <input type='text' onChange={e => setNewMessage(e.target.value)} /> */}
         <button type='submit'>
           <img src={send} alt='Send Icon' />
         </button>
