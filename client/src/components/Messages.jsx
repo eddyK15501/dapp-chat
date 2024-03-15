@@ -18,7 +18,19 @@ const Messages = ({ account, messages, currentChannel }) => {
 
   const handleSendMessage = async (event) => {
     event.preventDefault();
-    console.log('Sending Message');
+
+    // Send new message to the server
+    const messageObj = {
+      channel: currentChannel.id.toString(),
+      account: account,
+      text: newMessage,
+    };
+
+    if (newMessage) {
+      socket.emit('new message', messageObj);
+    }
+
+    setNewMessage('');
   };
 
   useEffect(() => {
@@ -56,6 +68,7 @@ const Messages = ({ account, messages, currentChannel }) => {
               type='text'
               value={newMessage}
               placeholder={`Add a new message: #${currentChannel.name}`}
+              style={{ outline: 'none' }}
               onChange={(e) => setNewMessage(e.target.value)}
             />
             <button type='submit'>
