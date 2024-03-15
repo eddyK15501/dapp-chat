@@ -21,10 +21,16 @@ const Messages = ({ account, messages, currentChannel }) => {
     console.log('Sending Message');
   };
 
-  // useEffect(() => {
-  //   console.log(messages);
-  //   console.log(currentChannel);
-  // }, [messages, currentChannel]);
+  useEffect(() => {
+    // Scroll new messages into view
+    const handleScroll = () => {
+      setTimeout(() => {
+        messageEndRef.current.scrollIntoView({ behavior: 'smooth' });
+      }, 500);
+    };
+
+    handleScroll();
+  });
 
   return (
     <div className='text'>
